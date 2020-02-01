@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
      //
      public function index()
      {
-         return Products::all();
+         $products =  DB::table('products')->paginate(5);
+         return $products;
      }
   
      public function show(Products $product)
